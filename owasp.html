@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Top 10 | Phylax</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/owasp.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Phylax</span>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="threats.html">Cyber Threats</a>
+                <a href="password-safety.html">Password Safety</a>
+                <a href="owasp.html" class="active">OWASP Top 10</a>
+                <a href="awareness.html">Cyber Awareness Check</a>
+                <a href="news.html">Cyber News</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="owasp-hero">
+        <span class="hero-label">WEB SECURITY ESSENTIALS</span>
+        <h1>OWASP <span>Top 10</span></h1>
+        <p>The most critical web application security risks, explained simply</p>
+    </section>
+
+    <!-- INTRO -->
+    <section class="owasp-intro">
+        <div class="owasp-intro-card">
+            <div class="intro-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+            <div class="intro-text">
+                <h3>Top 10 Web Application Security Risks</h3>
+                <p>Each year OWASP (the Open Web Application Security Project) publishes the top ten security
+                    vulnerabilities. It represents a broad consensus about the most critical security risks to web
+                    applications.</p>
+                <p>Click on any vulnerability below to learn how it works, see real-world examples, and understand how
+                    to protect against it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VULNERABILITY LIST -->
+    <section class="owasp-list-section">
+
+        <!-- A01: Broken Access Control -->
+        <div class="owasp-vuln-card" data-vuln="1">
+            <div class="vuln-rank danger">
+                <span>A01</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon danger"><i class="fa-solid fa-lock-open"></i></div>
+                    <div>
+                        <h3>Broken Access Control</h3>
+                        <span class="vuln-severity critical">Critical</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Access control enforces policy such that users cannot act outside their intended
+                    permissions. Failures typically lead to unauthorized information disclosure, modification, or
+                    destruction of data.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>Attackers exploit flaws in access control mechanisms to bypass authorization. This can
+                            include modifying URLs, API requests, or internal application state to access unauthorized
+                            resources. For example, changing <code>/user/profile?id=123</code> to <code>id=456</code> to
+                            view another user's data.</p>
+                        <!-- ATTACK SIMULATION -->
+                        <div class="detail-block sim-block">
+                            <h4><i class="fa-solid fa-play-circle"></i> Interactive Attack Simulation</h4>
+                            <p style="margin-bottom:16px;">Watch how a Broken Access Control attack unfolds step by
+                                step.</p>
+                            <button class="sim-start-btn" id="startSimBtn">
+                                <i class="fa-solid fa-play"></i> Launch Simulation
+                            </button>
+                        </div>
+
+                        <!-- SIMULATION PANEL -->
+                        <div class="sim-panel" id="simPanel">
+
+                            <!-- Browser Mockup -->
+                            <div class="sim-browser">
+                                <div class="browser-bar">
+                                    <div class="browser-dots">
+                                        <span class="dot red"></span>
+                                        <span class="dot yellow"></span>
+                                        <span class="dot green"></span>
+                                    </div>
+                                    <div class="browser-url" id="simUrl">
+                                        <i class="fa-solid fa-lock" id="simLock"></i>
+                                        <span id="simUrlText">https://bank.example.com/dashboard</span>
+                                    </div>
+                                    <div class="browser-icons">
+                                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Screen Content -->
+                                <div class="browser-screen" id="simScreen">
+                                    <!-- Filled dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Narration Box -->
+                            <div class="sim-narration">
+                                <div class="sim-narrator-icon" id="simNarratorIcon">
+                                    <i class="fa-solid fa-user-shield"></i>
+                                </div>
+                                <div class="sim-narrator-text">
+                                    <span class="sim-step-label" id="simStepLabel">Step 1 of 6</span>
+                                    <p id="simNarration">Click "Launch Simulation" to begin.</p>
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <div class="sim-controls">
+                                <button class="sim-ctrl-btn secondary" id="simResetBtn">
+                                    <i class="fa-solid fa-rotate-left"></i> Reset
+                                </button>
+                                <button class="sim-ctrl-btn primary" id="simNextBtn">
+                                    Next Step <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <!-- Progress Dots -->
+                            <div class="sim-progress" id="simProgress"></div>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>In 2019, a major financial institution exposed over 100 million customer records because
+                            their web application failed to properly restrict access to an internal API endpoint. Any
+                            authenticated user could access any other user's data by simply changing a parameter.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>Bypassing access control checks by modifying URLs or parameters</li>
+                            <li>Viewing or editing someone else's account by providing its identifier</li>
+                            <li>Accessing API endpoints with missing access controls for POST, PUT, DELETE</li>
+                            <li>Elevation of privilege — acting as a user without being logged in, or as admin when
+                                logged in as a regular user</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Deny access by default — implement server-side access control</li>
+                            <li>Use Role-Based Access Control (RBAC) consistently</li>
+                            <li>Disable web server directory listing and remove sensitive files from web roots</li>
+                            <li>Log access control failures and alert administrators</li>
+                            <li>Rate limit API and controller access to minimize automated attack damage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A02: Cryptographic Failures -->
+        <div class="owasp-vuln-card" data-vuln="2">
+            <div class="vuln-rank warning">
+                <span>A02</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon warning"><i class="fa-solid fa-key"></i></div>
+                    <div>
+                        <h3>Cryptographic Failures</h3>
+                        <span class="vuln-severity high">High</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Previously known as "Sensitive Data Exposure," this category focuses on failures
+                    related to cryptography — or lack thereof — which often leads to exposure of sensitive data like
+                    passwords, credit cards, and personal information.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>Attackers steal sensitive data when applications fail to properly encrypt it. This includes
+                            data transmitted in clear text (HTTP, FTP, SMTP), using weak or old cryptographic
+                            algorithms, or storing passwords without proper hashing. Even encrypted data can be exposed
+                            if encryption keys are poorly managed.</p>
+
+                    <!-- CRYPTO SIMULATION -->
+                <div class="detail-block sim-block">
+                    <h4><i class="fa-solid fa-play-circle"></i> Interactive Attack Simulation</h4>
+                    <p style="margin-bottom:16px;">Watch how Cryptographic Failures expose sensitive data to attackers.</p>
+                    <button class="sim-start-btn" id="startCryptoSim">
+                        <i class="fa-solid fa-play"></i> Launch Simulation
+                    </button>
+                </div>
+
+                <!-- CRYPTO SIMULATION PANEL -->
+                <div class="sim-panel" id="cryptoSimPanel">
+
+                    <!-- Network Diagram -->
+                    <div class="crypto-network" id="cryptoNetwork">
+                        
+                        <!-- User -->
+                        <div class="net-node user-node" id="cryptoUser">
+                            <div class="net-node-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <span>User (Alice)</span>
+                        </div>
+
+                        <!-- Connection Line -->
+                        <div class="net-connection" id="cryptoConnection">
+                            <div class="net-line" id="cryptoLine"></div>
+                            <div class="net-packet" id="cryptoPacket"></div>
+                            <div class="net-protocol" id="cryptoProtocol">HTTP</div>
+                        </div>
+
+                        <!-- Attacker (hidden initially) -->
+                        <div class="net-node attacker-node hidden" id="cryptoAttacker">
+                            <div class="net-node-icon attacker">
+                                <i class="fa-solid fa-user-secret"></i>
+                            </div>
+                            <span>Attacker</span>
+                        </div>
+
+                        <!-- Server -->
+                        <div class="net-node server-node" id="cryptoServer">
+                            <div class="net-node-icon server">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <span>Bank Server</span>
+                        </div>
+                    </div>
+
+                    <!-- Data Display -->
+                    <div class="crypto-data-display" id="cryptoDataDisplay">
+                        <div class="data-panel" id="dataSent">
+                            <div class="data-panel-header">
+                                <i class="fa-solid fa-paper-plane"></i> Data Being Sent
+                            </div>
+                            <div class="data-panel-body" id="dataSentBody">
+                                <span class="data-placeholder">Waiting...</span>
+                            </div>
+                        </div>
+                        <div class="data-panel" id="dataIntercepted">
+                            <div class="data-panel-header">
+                                <i class="fa-solid fa-eye"></i> What Attacker Sees
+                            </div>
+                            <div class="data-panel-body" id="dataInterceptedBody">
+                                <span class="data-placeholder">Waiting...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Narration -->
+                    <div class="sim-narration" id="cryptoNarrationBox">
+                        <div class="sim-narrator-icon" id="cryptoNarratorIcon">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div class="sim-narrator-text">
+                            <span class="sim-step-label" id="cryptoStepLabel">Step 1 of 7</span>
+                            <p id="cryptoNarration">Click "Launch Simulation" to begin.</p>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="sim-controls">
+                        <button class="sim-ctrl-btn secondary" id="cryptoResetBtn">
+                            <i class="fa-solid fa-rotate-left"></i> Reset
+                        </button>
+                        <button class="sim-ctrl-btn primary" id="cryptoNextBtn">
+                            Next Step <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Progress Dots -->
+                    <div class="sim-progress" id="cryptoProgress"></div>
+                </div>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>A healthcare provider stored patient records using MD5 hashing without salt. When their
+                            database was breached, attackers easily reversed millions of password hashes using rainbow
+                            tables, exposing sensitive medical data and patient identities.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>Transmitting data in clear text (HTTP instead of HTTPS)</li>
+                            <li>Using deprecated hash functions like MD5 or SHA-1</li>
+                            <li>Using default or weak cryptographic keys</li>
+                            <li>Not enforcing encryption through security headers (HSTS)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Classify and identify all sensitive data, and apply controls accordingly</li>
+                            <li>Encrypt all data in transit with TLS and enforce it using HSTS</li>
+                            <li>Use strong, up-to-date algorithms and protocols (AES-256, bcrypt)</li>
+                            <li>Store passwords using strong salted hashing functions (Argon2, bcrypt)</li>
+                            <li>Disable caching for responses containing sensitive data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A03: Injection -->
+        <div class="owasp-vuln-card" data-vuln="3">
+            <div class="vuln-rank danger">
+                <span>A03</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon danger"><i class="fa-solid fa-syringe"></i></div>
+                    <div>
+                        <h3>Injection</h3>
+                        <span class="vuln-severity critical">Critical</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Injection flaws occur when an attacker can send hostile data to an interpreter as
+                    part of a command or query. SQL injection, NoSQL injection, OS command injection, and LDAP injection
+                    are among the most common attack vectors.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>When user input is not properly validated, filtered, or sanitized, attackers can inject
+                            malicious commands into queries. For example, entering <code>' OR 1=1 --</code> into a login
+                            form could bypass authentication entirely if the application builds SQL queries using string
+                            concatenation.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>In the infamous SQL injection attack on a US voter registration database, attackers used
+                            automated tools to inject SQL commands through search fields, extracting personal data of
+                            over 200,000 voters including names, addresses, and partial SSNs.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>User-supplied data not validated, filtered, or sanitized</li>
+                            <li>Dynamic queries built with string concatenation</li>
+                            <li>Hostile data used within ORM search parameters</li>
+                            <li>Hostile data directly concatenated into SQL commands</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Use parameterized queries and prepared statements</li>
+                            <li>Use positive server-side input validation</li>
+                            <li>Escape special characters for any residual dynamic queries</li>
+                            <li>Use LIMIT and other SQL controls to prevent mass disclosure</li>
+                            <li>Use ORMs — but be aware they can still be vulnerable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A04: Insecure Design -->
+        <div class="owasp-vuln-card" data-vuln="4">
+            <div class="vuln-rank info">
+                <span>A04</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon info"><i class="fa-solid fa-drafting-compass"></i></div>
+                    <div>
+                        <h3>Insecure Design</h3>
+                        <span class="vuln-severity high">High</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Insecure design represents weaknesses in the application's architecture and design
+                    itself. Unlike implementation bugs, these are flaws in the fundamental security logic — no amount of
+                    perfect coding can fix a flawed design.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>Insecure design occurs when developers don't consider security during the planning phase. For
+                            example, designing a password reset flow that relies only on security questions (easily
+                            guessable or found on social media) without additional verification steps.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>A cinema chain allowed unlimited seat bookings without requiring payment upfront. Scalpers
+                            wrote bots to bulk-reserve premium seats for popular movies, then released unclaimed ones at
+                            the last minute — causing massive revenue loss and customer frustration.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>No threat modeling during design phase</li>
+                            <li>Missing rate limiting on critical business flows</li>
+                            <li>Trusting client-side validation alone</li>
+                            <li>Not considering abuse cases alongside use cases</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Establish a secure development lifecycle with security professionals</li>
+                            <li>Use threat modeling for authentication, access control, and business logic</li>
+                            <li>Write unit and integration tests for security-critical flows</li>
+                            <li>Separate tier layers and enforce trust boundaries</li>
+                            <li>Limit resource consumption by user or service</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A05: Security Misconfiguration -->
+        <div class="owasp-vuln-card" data-vuln="5">
+            <div class="vuln-rank warning">
+                <span>A05</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon warning"><i class="fa-solid fa-gears"></i></div>
+                    <div>
+                        <h3>Security Misconfiguration</h3>
+                        <span class="vuln-severity high">High</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Security misconfiguration is the most commonly seen issue. This is commonly a
+                    result of insecure default configurations, incomplete configurations, open cloud storage,
+                    misconfigured HTTP headers, or verbose error messages containing sensitive information.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>Attackers scan for unpatched systems, default accounts, unused pages, unprotected files, and
+                            misconfigured services. For example, a server running with default admin credentials
+                            (<code>admin/admin</code>) or a cloud storage bucket left publicly accessible.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>Multiple high-profile breaches have occurred through misconfigured AWS S3 buckets. Companies
+                            accidentally left sensitive data including customer records, internal documents, and
+                            credentials in publicly readable cloud storage — discoverable through simple automated
+                            scanning.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>Unnecessary features enabled (ports, services, pages, accounts)</li>
+                            <li>Default accounts and passwords still active</li>
+                            <li>Error handling reveals stack traces or sensitive info</li>
+                            <li>Security settings in frameworks and libraries not set to secure values</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Implement a repeatable, automated hardening process</li>
+                            <li>Remove or don't install unused features, frameworks, and components</li>
+                            <li>Review and update configurations as part of patch management</li>
+                            <li>Use segmented application architecture for separation between components</li>
+                            <li>Send security directives to clients (Security Headers)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A06: Vulnerable Components -->
+        <div class="owasp-vuln-card" data-vuln="6">
+            <div class="vuln-rank info">
+                <span>A06</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon info"><i class="fa-solid fa-cubes"></i></div>
+                    <div>
+                        <h3>Vulnerable &amp; Outdated Components</h3>
+                        <span class="vuln-severity medium">Medium</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Applications using components with known vulnerabilities may undermine defenses and
+                    enable various attacks. Components run with the same privileges as the application, so flaws in any
+                    component can be serious.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>If you don't know the versions of all components you use (both client-side and server-side),
+                            or if any components are outdated, unsupported, or have known vulnerabilities, attackers can
+                            exploit these using publicly available exploit code.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>The Log4Shell vulnerability (CVE-2021-44228) in Apache Log4j affected millions of
+                            applications worldwide. Attackers could achieve remote code execution simply by sending a
+                            crafted string to any application that logged user input using the vulnerable library.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>Not knowing versions of all components and nested dependencies</li>
+                            <li>Using software that is unsupported or out of date</li>
+                            <li>Not scanning for vulnerabilities regularly</li>
+                            <li>Not fixing or upgrading underlying platforms and libraries in a timely fashion</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Remove unused dependencies and unnecessary features</li>
+                            <li>Continuously inventory all component versions (e.g., using SBOM)</li>
+                            <li>Monitor sources like CVE and NVD for vulnerabilities</li>
+                            <li>Only obtain components from official sources over secure links</li>
+                            <li>Use tools like Dependabot, Snyk, or npm audit for automated scanning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A07: Authentication Failures -->
+        <div class="owasp-vuln-card" data-vuln="7">
+            <div class="vuln-rank danger">
+                <span>A07</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon danger"><i class="fa-solid fa-user-lock"></i></div>
+                    <div>
+                        <h3>Identification &amp; Authentication Failures</h3>
+                        <span class="vuln-severity critical">Critical</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Confirmation of a user's identity, authentication, and session management is
+                    critical. Authentication weaknesses can allow attackers to compromise passwords, keys, or session
+                    tokens, or to exploit implementation flaws to assume other users' identities.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>Attackers exploit weak authentication by using brute force, credential stuffing (testing
+                            stolen username/password pairs), or session hijacking. If an application allows weak
+                            passwords like "password123" or doesn't implement account lockout, automated tools can crack
+                            accounts in seconds.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>A major social media platform's API allowed unlimited login attempts without rate limiting.
+                            Attackers used credential stuffing with a database of 500 million leaked passwords,
+                            successfully compromising millions of accounts that reused passwords.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>Permitting brute force or automated credential stuffing attacks</li>
+                            <li>Allowing default, weak, or well-known passwords</li>
+                            <li>Using plain text or weakly hashed passwords</li>
+                            <li>Missing or ineffective multi-factor authentication</li>
+                            <li>Exposing session identifiers in the URL</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Implement multi-factor authentication to prevent automated attacks</li>
+                            <li>Do not deploy with default credentials</li>
+                            <li>Check passwords against the top 10,000 worst passwords list</li>
+                            <li>Limit or increasingly delay failed login attempts</li>
+                            <li>Use a server-side, secure session manager that generates random session IDs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A08: Software Integrity Failures -->
+        <div class="owasp-vuln-card" data-vuln="8">
+            <div class="vuln-rank warning">
+                <span>A08</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon warning"><i class="fa-solid fa-code-branch"></i></div>
+                    <div>
+                        <h3>Software &amp; Data Integrity Failures</h3>
+                        <span class="vuln-severity high">High</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Software and data integrity failures relate to code and infrastructure that does
+                    not protect against integrity violations. This includes using software from untrusted sources,
+                    insecure CI/CD pipelines, and auto-update mechanisms without verification.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>Attackers compromise the software supply chain — injecting malicious code into libraries,
+                            plugins, or update mechanisms. If an application auto-updates without verifying the
+                            integrity (digital signatures, checksums), a compromised update server can push malware to
+                            all users.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>The SolarWinds supply chain attack (2020) compromised the Orion software build process.
+                            Attackers injected a backdoor into legitimate updates that was then distributed to over
+                            18,000 organizations, including US government agencies and Fortune 500 companies.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>Using libraries from untrusted CDNs or repositories without integrity checks</li>
+                            <li>Insecure CI/CD pipelines allowing unauthorized code changes</li>
+                            <li>Auto-update functionality without sufficient integrity verification</li>
+                            <li>Unsigned or unencrypted serialized data sent to untrusted clients</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Use digital signatures to verify software and data are from the expected source</li>
+                            <li>Ensure libraries are consumed from trusted repositories</li>
+                            <li>Use software supply chain security tools like OWASP Dependency-Check</li>
+                            <li>Ensure your CI/CD pipeline has proper segregation, configuration, and access control
+                            </li>
+                            <li>Do not send unsigned or unencrypted serialized data to untrusted clients</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A09: Logging & Monitoring -->
+        <div class="owasp-vuln-card" data-vuln="9">
+            <div class="vuln-rank info">
+                <span>A09</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon info"><i class="fa-solid fa-eye"></i></div>
+                    <div>
+                        <h3>Security Logging &amp; Monitoring Failures</h3>
+                        <span class="vuln-severity medium">Medium</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">Without logging and monitoring, breaches cannot be detected. Insufficient logging,
+                    detection, monitoring, and active response occurs when auditable events are not logged, warnings and
+                    errors generate no alerts, and logs are only stored locally.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>When security events (logins, failed logins, high-value transactions) aren't properly logged
+                            and monitored, attackers can operate undetected for extended periods. The average time to
+                            identify a breach is 287 days — logging failures extend this dramatically.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>A major retailer was breached through their HVAC vendor's credentials. The attackers were
+                            active in the network for weeks, exfiltrating 40 million credit card numbers. The breach was
+                            eventually detected not by the company's security team, but by the US Department of Justice.
+                        </p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>Auditable events (logins, failed logins, transactions) not logged</li>
+                            <li>Warnings and errors generate no or unclear log messages</li>
+                            <li>Logs are only stored locally without centralized monitoring</li>
+                            <li>No alerting thresholds or response escalation processes in place</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Ensure all login, access control, and server-side validation failures are logged</li>
+                            <li>Ensure logs are generated in a format suitable for SIEM tools</li>
+                            <li>Establish effective monitoring and alerting with low response times</li>
+                            <li>Establish or adopt an incident response and recovery plan</li>
+                            <li>Use tamper-evident logging mechanisms (append-only databases)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- A10: SSRF -->
+        <div class="owasp-vuln-card" data-vuln="10">
+            <div class="vuln-rank danger">
+                <span>A10</span>
+            </div>
+            <div class="vuln-body">
+                <div class="vuln-header">
+                    <div class="vuln-icon danger"><i class="fa-solid fa-server"></i></div>
+                    <div>
+                        <h3>Server-Side Request Forgery (SSRF)</h3>
+                        <span class="vuln-severity critical">Critical</span>
+                    </div>
+                </div>
+                <p class="vuln-desc">SSRF flaws occur when a web application fetches a remote resource without
+                    validating the user-supplied URL. This allows an attacker to coerce the application to send a
+                    crafted request to an unexpected destination, even when protected by a firewall or VPN.</p>
+                <div class="vuln-details">
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-crosshairs"></i> How It Works</h4>
+                        <p>Attackers supply or modify a URL that the server-side code reads or submits. This can trick
+                            the server into accessing internal services (like <code>http://169.254.169.254/</code> for
+                            cloud metadata), scanning internal ports, or accessing data behind the firewall that should
+                            not be externally accessible.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-globe"></i> Real-World Example</h4>
+                        <p>The 2019 Capital One breach exploited an SSRF vulnerability in a misconfigured web
+                            application firewall. The attacker sent crafted requests that made the server access AWS
+                            metadata service, obtaining IAM credentials that were used to access S3 buckets containing
+                            100 million customer records.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h4><i class="fa-solid fa-triangle-exclamation"></i> Common Weaknesses</h4>
+                        <ul>
+                            <li>Fetching remote resources based on user-supplied URLs</li>
+                            <li>Not validating or sanitizing URLs before server-side fetching</li>
+                            <li>Allowing access to internal services (localhost, metadata APIs)</li>
+                            <li>Not blocking outbound traffic to unexpected destinations</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block safe">
+                        <h4><i class="fa-solid fa-shield-halved"></i> How To Prevent</h4>
+                        <ul>
+                            <li>Sanitize and validate all client-supplied input data (URL allowlists)</li>
+                            <li>Enforce "deny by default" firewall policies for network traffic</li>
+                            <li>Disable HTTP redirections and use an allowlist for DNS resolution</li>
+                            <li>Do not send raw responses to clients — validate response type</li>
+                            <li>Segment remote resource access into separate networks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="vuln-toggle" aria-label="Expand details">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Cybersecurity Awareness Platform</span>
+            </div>
+            <div class="footer-right">&copy; 2025 All rights reserved. Built for educational purposes.</div>
+        </div>
+    </footer>
+
+    <script src="js/owasp.js"></script>
+</body>
+
+</html>

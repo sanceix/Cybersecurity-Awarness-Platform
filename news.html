@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber News | Phylax</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/news.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="navbar-container">
+    <div class="logo">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span>Phylax</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="threats.html">Cyber Threats</a>
+      <a href="password-safety.html">Password Safety</a>
+      <a href="owasp.html">OWASP Top 10</a>
+      <a href="awareness.html">Cyber Awareness Check</a>
+      <a href="news.html" class="active">Cyber News</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="news-hero">
+    <span class="hero-label">REAL-TIME INTELLIGENCE</span>
+    <h1>Cyber <span>News</span></h1>
+    <p>Stay informed with the latest cybersecurity news, vulnerabilities, and threat intelligence</p>
+</section>
+
+<!-- LIVE STATS BAR -->
+<div class="news-stats-bar">
+    <div class="news-stat-item">
+        <i class="fa-solid fa-newspaper"></i>
+        <span id="newsCount">—</span>
+        <span class="stat-label">Articles</span>
+    </div>
+    <div class="news-stat-item">
+        <i class="fa-solid fa-bug"></i>
+        <span id="cveCount">—</span>
+        <span class="stat-label">Recent CVEs</span>
+    </div>
+    <div class="news-stat-item pulse-dot">
+        <i class="fa-solid fa-circle live-dot"></i>
+        <span>Live Feed</span>
+        <span class="stat-label">Auto-updated</span>
+    </div>
+</div>
+
+<!-- SEARCH & FILTER -->
+<div class="news-controls">
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search news & vulnerabilities...">
+    </div>
+    <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="news">News</button>
+        <button class="filter-tab" data-filter="cve">CVEs</button>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="news-layout">
+
+    <!-- NEWS SECTION -->
+    <section class="news-section" id="newsSection">
+        <div class="section-header-row">
+            <h2><i class="fa-solid fa-rss"></i> Latest Cyber News</h2>
+            <span class="source-tag">Source: The Hacker News</span>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="newsLoading">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-state hidden" id="newsError">
+            <div class="error-card">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <h3>Failed to load news</h3>
+                <p>The news feed is temporarily unavailable. Please try again later.</p>
+                <button class="retry-btn" id="retryNews"><i class="fa-solid fa-rotate-right"></i> Retry</button>
+            </div>
+        </div>
+
+        <!-- News Grid -->
+        <div class="news-grid" id="newsGrid"></div>
+    </section>
+
+    <!-- CVE SECTION -->
+    <section class="cve-section" id="cveSection">
+        <div class="section-header-row">
+            <h2><i class="fa-solid fa-shield-virus"></i> Recent Vulnerabilities</h2>
+            <span class="source-tag">Source: CIRCL CVE API</span>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading-state" id="cveLoading">
+            <div class="skeleton-cve"></div>
+            <div class="skeleton-cve"></div>
+            <div class="skeleton-cve"></div>
+            <div class="skeleton-cve"></div>
+            <div class="skeleton-cve"></div>
+        </div>
+
+        <!-- Error -->
+        <div class="error-state hidden" id="cveError">
+            <div class="error-card">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <h3>Failed to load CVEs</h3>
+                <p>The vulnerability feed is temporarily unavailable.</p>
+                <button class="retry-btn" id="retryCve"><i class="fa-solid fa-rotate-right"></i> Retry</button>
+            </div>
+        </div>
+
+        <!-- CVE List -->
+        <div class="cve-list" id="cveList"></div>
+    </section>
+
+</div>
+
+<!-- EDUCATIONAL TIP -->
+<div class="news-tip">
+    <div class="news-tip-inner">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div>
+            <strong>Why stay updated?</strong>
+            <p>Following cybersecurity news helps you understand emerging threats, learn from real-world breaches, and stay one step ahead of attackers. Knowledge is your first line of defense.</p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Cybersecurity Awareness Platform</span>
+        </div>
+        <div class="footer-right">&copy; 2025 All rights reserved. Built for educational purposes.</div>
+    </div>
+</footer>
+
+<script src="js/news.js"></script>
+</body>
+</html>

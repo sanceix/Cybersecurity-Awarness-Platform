@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Awareness Check | Phylax</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/awareness.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="navbar-container">
+    <div class="logo">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span>Phylax</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="threats.html">Cyber Threats</a>
+      <a href="password-safety.html">Password Safety</a>
+      <a href="owasp.html">OWASP Top 10</a>
+      <a href="awareness.html" class="active">Cyber Awareness Check</a>
+      <a href="news.html">Cyber News</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="awareness-hero">
+    <span class="hero-label">INTERACTIVE LEARNING</span>
+    <h1>Cyber Awareness <span>Check</span></h1>
+    <p>Test your cybersecurity knowledge with fun, interactive activities!</p>
+</section>
+
+<!-- BADGE TIERS INFO -->
+<div class="badge-info" id="badgeInfo">
+    <div class="badge-info-inner">
+        <div class="badge-tier beginner">
+            <i class="fa-solid fa-seedling"></i>
+            Beginner Badge
+            <span class="tier-range">(1–10 correct)</span>
+        </div>
+        <div class="badge-tier intermediate">
+            <i class="fa-solid fa-fire"></i>
+            Intermediate Badge
+            <span class="tier-range">(11–20 correct)</span>
+        </div>
+        <div class="badge-tier expert">
+            <i class="fa-solid fa-crown"></i>
+            Expert Badge
+            <span class="tier-range">(21–30 correct)</span>
+        </div>
+    </div>
+</div>
+
+<!-- HUB -->
+<div class="quiz-hub" id="quizHub">
+    <div class="hub-grid">
+        <!-- Quiz Card -->
+        <article class="hub-card" id="startQuizCard">
+            <div class="hub-icon green">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3>Quick Knowledge Quiz</h3>
+            <p>Answer 30 multiple-choice questions covering phishing, malware, passwords, social engineering, and more.</p>
+            <div class="hub-meta">
+                <span>30 questions</span> · Earn badges as you progress
+            </div>
+            <button class="hub-start-btn" type="button">Start Quiz <span>→</span></button>
+        </article>
+
+        <!-- Spot the Risk Card -->
+        <article class="hub-card" id="startGameCard">
+            <div class="hub-icon amber">
+                <i class="fa-solid fa-crosshairs"></i>
+            </div>
+            <h3>Spot the Risk</h3>
+            <p>Analyze real-world cyber scenarios - phishing emails, fake websites, suspicious messages - and identify what's dangerous.</p>
+            <div class="hub-meta">
+                <span>15 scenarios</span> · Build streaks &amp; earn badges
+            </div>
+            <button class="hub-start-btn" type="button" style="color:#fbbf24;">Start Game <span>→</span></button>
+        </article>
+    </div>
+</div>
+
+<!-- ============================================
+     QUIZ AREA (same as before)
+============================================ -->
+<div class="quiz-container" id="quizContainer">
+    <div class="quiz-card">
+        <div class="quiz-header">
+            <span class="quiz-question-count" id="questionCount">Question 1 of 30</span>
+            <span class="quiz-score-badge">Score: <span id="scoreDisplay">0</span></span>
+        </div>
+        <div class="quiz-progress">
+            <div class="quiz-progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        <h2 class="quiz-question" id="questionText"></h2>
+        <div class="quiz-options" id="optionsContainer"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <button class="quiz-next-btn" id="nextBtn">Next Question →</button>
+    </div>
+</div>
+
+<!-- QUIZ RESULTS -->
+<div class="quiz-results" id="quizResults">
+    <div class="results-card" id="resultsCard">
+        <div class="result-badge-icon" id="resultBadgeIcon">
+            <i id="resultBadgeIconI"></i>
+        </div>
+        <h2 class="result-badge-title" id="resultBadgeTitle"></h2>
+        <p class="result-badge-subtitle" id="resultBadgeSubtitle"></p>
+        <div class="result-score-ring">
+            <svg viewBox="0 0 120 120">
+                <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+                <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52"
+                    stroke-dasharray="326.73" stroke-dashoffset="326.73"></circle>
+            </svg>
+            <div class="result-score-text">
+                <span class="result-score-number" id="resultScoreNum">0</span>
+                <span class="result-score-label">out of 30</span>
+            </div>
+        </div>
+        <div class="result-stats">
+            <div class="result-stat">
+                <div class="result-stat-value green" id="statCorrect">0</div>
+                <div class="result-stat-label">Correct</div>
+            </div>
+            <div class="result-stat">
+                <div class="result-stat-value red" id="statWrong">0</div>
+                <div class="result-stat-label">Wrong</div>
+            </div>
+            <div class="result-stat">
+                <div class="result-stat-value blue" id="statPercent">0%</div>
+                <div class="result-stat-label">Accuracy</div>
+            </div>
+        </div>
+        <div class="result-actions">
+            <button class="result-btn primary" id="retryBtn"><i class="fa-solid fa-rotate-right"></i>&nbsp; Try Again</button>
+            <button class="result-btn secondary" id="backHomeBtn"><i class="fa-solid fa-house"></i>&nbsp; Back to Hub</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+     SPOT THE RISK GAME AREA
+============================================ -->
+<div class="game-container" id="gameContainer">
+    <div class="game-card">
+
+        <!-- Header -->
+        <div class="game-header">
+            <span class="game-scenario-count" id="scenarioCount">Scenario 1 of 15</span>
+            <div class="game-header-right">
+                <span class="game-streak" id="streakBadge">
+                    <i class="fa-solid fa-fire"></i> Streak: <span id="streakDisplay">0</span>
+                </span>
+                <span class="quiz-score-badge game-score-badge">
+                    Score: <span id="gameScoreDisplay">0</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="quiz-progress">
+            <div class="quiz-progress-fill game-progress-fill" id="gameProgressFill" style="width:0%"></div>
+        </div>
+
+        <!-- Scenario Display -->
+        <div class="scenario-box" id="scenarioBox"></div>
+
+        <!-- Question -->
+        <h3 class="game-prompt" id="gamePrompt"></h3>
+
+        <!-- Options -->
+        <div class="game-options" id="gameOptionsContainer"></div>
+
+        <!-- Feedback -->
+        <div class="quiz-feedback" id="gameFeedback"></div>
+
+        <!-- Next -->
+        <button class="quiz-next-btn" id="gameNextBtn">Next Scenario →</button>
+    </div>
+</div>
+
+<!-- GAME RESULTS -->
+<div class="quiz-results" id="gameResults">
+    <div class="results-card" id="gameResultsCard">
+        <div class="result-badge-icon" id="gameResultBadgeIcon">
+            <i id="gameResultBadgeIconI"></i>
+        </div>
+        <h2 class="result-badge-title" id="gameResultBadgeTitle"></h2>
+        <p class="result-badge-subtitle" id="gameResultBadgeSubtitle"></p>
+        <div class="result-score-ring">
+            <svg viewBox="0 0 120 120">
+                <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+                <circle class="ring-fill" id="gameRingFill" cx="60" cy="60" r="52"
+                    stroke-dasharray="326.73" stroke-dashoffset="326.73"></circle>
+            </svg>
+            <div class="result-score-text">
+                <span class="result-score-number" id="gameResultScoreNum">0</span>
+                <span class="result-score-label">out of 15</span>
+            </div>
+        </div>
+        <div class="result-stats">
+            <div class="result-stat">
+                <div class="result-stat-value green" id="gameStatCorrect">0</div>
+                <div class="result-stat-label">Correct</div>
+            </div>
+            <div class="result-stat">
+                <div class="result-stat-value red" id="gameStatWrong">0</div>
+                <div class="result-stat-label">Wrong</div>
+            </div>
+            <div class="result-stat">
+                <div class="result-stat-value" style="color:#fbbf24" id="gameStatStreak">0</div>
+                <div class="result-stat-label">Best Streak</div>
+            </div>
+        </div>
+        <div class="result-actions">
+            <button class="result-btn primary" id="gameRetryBtn"><i class="fa-solid fa-rotate-right"></i>&nbsp; Play Again</button>
+            <button class="result-btn secondary" id="gameBackBtn"><i class="fa-solid fa-house"></i>&nbsp; Back to Hub</button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Cybersecurity Awareness Platform</span>
+        </div>
+        <div class="footer-right">&copy; 2025 All rights reserved. Built for educational purposes.</div>
+    </div>
+</footer>
+
+<script src="js/awareness-quiz.js"></script>
+</body>
+</html>
